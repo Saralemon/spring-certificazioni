@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+	<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+	<body th:replace="fragments/base :: body(~{::main})">
+		<main class="container-fluid px-lg-5 bg-light">
+			<!-- Elenco Certificazioni -->
+			<section class="container px-lg-5 mt-2">
+				<div th:each="certificazione : ${certificazioni}" class="d-flex flex-wrap align-items-center bg-white mt-1 p-3 shadow-sm border">
+					<div class="ms-3">
+						<h4 class="mb-3" th:text="${certificazione.nome}"></h4>
+					</div>
+					<div class="mt-2 mx-auto me-md-0 mt-md-0">
+						<a class="btn btn-primary" th:href="@{'/certificazioni/' + ${certificazione.id}}" th:text="#{home.prenota}"></a>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+
+</html>

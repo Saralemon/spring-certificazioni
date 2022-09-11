@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="fragments/base :: headerfiles(#{register.titolo})"></head>
+
+    <body th:replace="fragments/base :: body(~{::main})">
+
+        <main class="container-fluid px-lg-5 py-3 bg-light">
+            <section class="container px-lg-5">
+                <div class="text-center">
+                    <div class="display-6" th:text="#{register.titolo}"></div>
+                </div>
+                <form class="my-1" th:action="@{/modify}" method="post" novalidate>
+                    <input type="hidden" th:field="${utente.id}">
+                    <!-- Nome -->
+                    <div class="row my-3">
+                        <div class="col col-md-4"></div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-floating">
+                                <input id="nome" type="text" class="form-control" placeholder=" "
+                                    th:field="${utente.nome}">
+                                <label for="password" th:text="#{register.nome}"></label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4" th:if="${#fields.hasErrors('utente.nome')}">
+                            <div class="alert alert-danger" th:errors="${utente.nome}"></div>
+                        </div>
+                    </div>
+                    <!-- Cognome -->
+                    <div class="row mb-3">
+                        <div class="col col-md-4"></div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-floating">
+                                <input id="cognome" type="text" class="form-control" placeholder=" "
+                                    th:field="${utente.cognome}">
+                                <label for="cognome" th:text="#{register.cognome}"></label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4" th:if="${#fields.hasErrors('utente.cognome')}">
+                            <div class="alert alert-danger" th:errors="${utente.cognome}"></div>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div class="row">
+                        <div class="col col-md-4"></div>
+                        <div class="col-12 col-md-4 d-grid">
+                            <button class="btn btn-primary" type="submit">
+                                <span th:text="#{register.registraUtente}"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+    </body>
+
+</html>

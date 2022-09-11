@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="fragments/base :: headerfiles(#{admin.esameForm.titolo})"></head>
+
+    <body th:replace="fragments/base :: body(~{::main})">
+
+        <main class="container-fluid px-lg-5 py-3 bg-light">
+            <!-- Form Esame -->
+            <section class="container px-lg-5">
+                <h1 class="text-center mb-2" th:text="#{admin.esameForm.titolo}"></h1>
+                <form th:action="@{'/admin/certificazioni/' + ${certificazione.id} + '/esami'}" method="post" th:object="${esame}">
+                    <!-- Errori Globali -->
+                    <div class="container col-12 col-md-6" th:if="${#fields.hasGlobalErrors()}">
+                        <div class="alert alert-danger" role="alert">
+                            <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                        </div>
+                    </div>
+                    <!-- Prima riga della Form -->
+                    <div class="row mb-2">
+                        <!-- Form Nome Esame -->
+                        <div class="col-12 col-md-4 mb-2 mb-md-0">
+                            <div class="form-floating">
+                                <input id="nome" type="text" class="form-control" placeholder=" " th:field="*{nome}">
+                                <label for="nome" th:text="#{admin.esameForm.label.nome}"></label>
+                            </div>
+                            <div class="mt-2" th:if="${#fields.hasErrors('nome')}">
+                                <div class="alert alert-danger" role="alert" th:errors="*{nome}"></div>
+                            </div>
+                        </div>
+                        <!-- Form Aula Esame -->
+                        <div class="col-12 col-md-4 mb-2 mb-md-0">
+                            <div class="form-floating">
+                                <input id="aula" type="text" class="form-control" placeholder=" " th:field="*{aula}">
+                                <label for="aula" th:text="#{admin.esameForm.label.aula}"></label>
+                            </div>
+                            <div class="mt-2" th:if="${#fields.hasErrors('aula')}">
+                                <div class="alert alert-danger" role="alert" th:errors="*{aula}"></div>
+                            </div>
+                        </div>
+                        <!-- Form Data Esame -->
+                        <div class="col-12 col-md-4">
+                            <div class="form-floating">
+                                <input id="data" type="datetime" class="form-control" placeholder=" " th:field="*{data}">
+                                <label for="data" th:text="#{admin.esameForm.label.data}"></label>
+                            </div>
+                            <div class="mt-2" th:if="${#fields.hasErrors('data')}">
+                                <div class="alert alert-danger" role="alert" th:errors="*{data}"></div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Form Concerto (Solo a fini estetici) -->
+                        <div class="col-12 col-md-6">
+                            <div class="form-floating">
+                                <input id="certificazione" type="text" class="form-control" placeholder=" " th:field="${certificazione.nome}" disabled>
+                                <label for="certificazione" th:text="#{admin.esameForm.label.certificazione}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Conferma -->
+                    <div class="container col-12 col-md-5 d-grid">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span th:text="#{admin.certificazioneForm.salva}"></span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+    </body>
+
+</html>

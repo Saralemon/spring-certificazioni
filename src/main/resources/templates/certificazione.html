@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="fragments/base :: headerfiles(#{certificazione.titolo})"></head>
+
+    <body th:replace="fragments/base :: body(~{::main})">
+        <main class="container-fluid px-lg-5 py-3 bg-light">
+            <!-- Descrizione Certificazione -->
+            <section class="container px-lg-5">
+                <div class="d-flex flex-wrap align-items-center bg-white p-3 shadow-sm border">
+                    <img class="img-icon" th:src="@{/images/placeholder.jpg}" alt="Immagine Certificazione Placeholder">
+                    <div class="ms-3">
+                        <h4 class="mb-3" th:text="${certificazione.nome}"></h4>
+                    </div>
+                    <!-- Operazioni da Admin -->
+                    <div class="ms-md-auto mt-2 mt-md-0" sec:authorize="hasAuthority('SEGRETERIA')">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                <span th:text="#{admin.certificazione.operazioni}"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a th:href="@{'/admin/certificazione/' + ${certificazione.id} + '/modify'}"
+                                        class="dropdown-item">
+                                        <i class="fa-solid fa-wrench"></i>
+                                        <span th:text="#{admin.certificazione.modifica}"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{'/admin/certificazioni/' + ${certificazione.id} + '/delete'}"
+                                        class="dropdown-item text-danger">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <span th:text="#{admin.certificazione.cancella}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Elenco Esami disponibili -->
+            <section class="container px-lg-5">
+                <div th:if="${prenotazioneEffettuata}" class="mt-2">
+                    <div class="alert alert-success" role="alert" th:text="#{cerfificazione.prenotazione.successo}"></div>
+                </div>
+                <div class="d-flex px-2 my-2">
+                    <h2 th:text="#{certificazione.esami.titolo}"></h2>
+                    <div class="ms-auto" sec:authorize="hasAuthority('SEGRETERIA')">
+                        <a class="btn btn-primary" th:href="@{'/admin/certificazioni/' + ${certificazione.id} + '/esami/new'}">
+                            <i class="fa-solid fa-plus"></i>
+                            <span th:text="#{admin.certificazione.esame.crea}"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center bg-white p-3 border"
+                    th:each="esame : ${certificazione.esami}">
+                    <h3 class="my-auto" th:text="${esame.nome}"></h3>
+                    <div class="ms-3" th:text="${esame.aula}"></div>
+                    <div class="ms-auto" th:text="${#temporals.format(esame.data, 'dd/MM/yyyy')}"></div>
+                    <div sec:authorize="hasAuthority('SEGRETERIA')" class="ms-3">
+                    </div>
+                    <div sec:authorize="hasAuthority('STUDENTE')" class="ms-2">
+                        <a class="btn btn-primary" th:href="@{'/prenotazioni/esami/' + ${esame.id}}">
+                            <i class="fa-solid fa-bookmark"></i>
+                            <span th:text="#{certificazione.esami.prenota}"></span>
+                        </a>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+
+</html>

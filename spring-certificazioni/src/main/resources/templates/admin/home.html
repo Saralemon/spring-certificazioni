@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+	<head th:replace="fragments/base :: headerfiles(#{admin.home.titolo})"></head>
+
+	<body th:replace="fragments/base :: body(~{::main})">
+
+		<main class="container-fluid px-lg-5 py-3 bg-light">
+			<!-- Card di Operazione -->
+			<section class="container px-lg-5 d-flex flex-wrap justify-content-center gap-2">
+				<div class="card card-width">
+					<div class="card-body">
+						<h5 class="card-title" th:text="#{admin.home.card.certificazioni.titolo}"></h5>
+						<p class="card-text" th:text="#{admin.home.card.certificazioni.testo}"></p>
+						<a class="btn btn-primary" th:href="@{/admin/certificazioni}" th:text="#{admin.home.card.certificazioni.link}"></a>
+					</div>
+				</div>
+				<div class="card card-width">
+					<div class="card-body">
+						<h5 class="card-title" th:text="#{admin.home.register.titolo}"></h5>
+						<p class="card-text" th:text="#{admin.home.register.testo}"></p>
+						<a class="btn btn-primary" th:href="@{/admin/utenti/new}" th:text="#{admin.home.register.link}"></a>
+					</div>
+				</div>
+				<div class="card card-width">
+					<div class="card-body">
+						<h5 class="card-title" th:text="#{admin.home.modifica.titolo}"></h5>
+						<p class="card-text" th:text="#{admin.home.modifica.testo}"></p>
+						<a class="btn btn-primary" th:href="@{/admin/utenti}" th:text="#{admin.home.modifica.link}"></a>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

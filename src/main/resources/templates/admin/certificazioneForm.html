@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="fragments/base :: headerfiles(#{admin.certificazioneForm.titolo})"></head>
+
+    <body th:replace="fragments/base :: body(~{::main})">
+
+        <main class="container-fluid px-lg-5 py-3 bg-light">
+            <!-- Form certificazione -->
+            <section class="container px-lg-5">
+                <h1 class="text-center mb-2" th:text="#{admin.certificazioneForm.titolo}"></h1>
+                <form th:action="@{/admin/certificazioni/new}" method="post" th:object="${certificazione}">
+                    <!-- Errori Globali -->
+                    <div class="container col-12 col-md-6" th:if="${#fields.hasGlobalErrors()}">
+                        <div class="alert alert-danger" role="alert">
+                            <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                        </div>
+                    </div>
+                    <!-- Form id certificazione (per la modifica) -->
+                    <div><input type="hidden" th:field="*{id}"/></div>
+                    <!-- Prima riga Form -->
+                    <div class="row mb-2">
+                        <!-- Form Nome certificazione -->
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <div class="form-floating">
+                                <input id="nome" type="text" class="form-control" placeholder=" " th:field="*{nome}">
+                                <label for="nome" th:text="#{admin.certificazioneForm.nome}"></label>
+                            </div>
+                            <div class="mt-2" th:if="${#fields.hasErrors('nome')}">
+                                <div class="alert alert-danger" th:errors="*{nome}"></div>
+                            </div>
+                        </div>
+                        <!-- Form Dipartiemnto Certificazione  -->
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <div class="form-floating">
+                                <input id="dipartimento" type="text" class="form-control" placeholder=" " th:field="*{dipartimento}">
+                                <label for="dipartimento" th:text="#{admin.certificazioneForm.dipartimento}"></label>
+                            </div>
+                            <div class="mt-2" th:if="${#fields.hasErrors('nome')}">
+                                <div class="alert alert-danger" th:errors="*{nome}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Seconda Riga Form -->
+                    <!-- Conferma -->
+                    <div class="container col-12 col-md-5 d-grid">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span th:text="#{admin.certificazioneForm.salva}"></span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+    </body>
+
+</html>

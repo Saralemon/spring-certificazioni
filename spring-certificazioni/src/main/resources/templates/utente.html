@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/base :: headerfiles(#{utente.titolo})"></head>
+
+<body th:replace="fragments/base :: body(~{::main})">
+    <main class="container-fluid px-lg-5 py-3 bg-light">
+        <!-- Descrizione utente -->
+        <section class="container px-lg-5">
+            <div class="d-flex flex-wrap align-items-center bg-white p-3 shadow-sm border">
+                <div class="ms-3">
+                    <h4 class="mb-3" th:text="${utente.nome}"></h4>
+                    <h4 class="mb-3" th:text="${utente.cognome}"></h4>
+                </div>
+                <!-- Operazioni da Admin -->
+                <div class="ms-md-auto mt-2 mt-md-0" sec:authorize="hasAuthority('SEGRETERIA')">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span th:text="#{admin.utente.operazioni}"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a th:href="@{'/admin/utenti/' + ${utente.id} + '/modify'}" class="dropdown-item">
+                                    <i class="fa-solid fa-wrench"></i>
+                                    <span th:text="#{admin.utente.modifica}"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{'/admin/utenti/' + ${utente.id} + '/delete'}"
+                                    class="dropdown-item text-danger">
+                                    <span th:text="#{admin.utente.cancella}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
