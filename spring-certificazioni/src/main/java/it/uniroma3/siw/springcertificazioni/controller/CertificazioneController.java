@@ -35,7 +35,6 @@ public class CertificazioneController {
             @RequestParam(required = false, value = "prenotazione") boolean prenotazione,
             @PathVariable Long id,
             Model model) {
-        log.info("Richiesta GET /certificazione/" + id);
 
         Certificazione certificazione = this.certificazioneService.getCertificazione(id);
         model.addAttribute("prenotazioneEffettuata", prenotazione);

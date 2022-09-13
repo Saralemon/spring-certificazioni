@@ -31,11 +31,8 @@ public class EsameValidator implements Validator {
 
         log.debug("Validazione Globale");
         if(this.esameService.esisteEsame(id, aula, data, durata)) {
-            log.debug("Non si possono sotenere più esami nella stessa aula contemporaneamente");
             errors.reject("Unique.esame");
         }
-
-        log.info("Validazione Esame Terminata");
     }
 
     @Override
