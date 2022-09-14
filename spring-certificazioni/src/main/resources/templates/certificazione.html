@@ -40,7 +40,7 @@
         <!-- Elenco Esami disponibili -->
         <section class="container px-lg-5">
             <div th:if="${prenotazioneEffettuata}" class="mt-2">
-                <div class="alert alert-success" role="alert" th:text="#{cerfificazione.prenotazione.successo}"></div>
+                <div class="alert alert-success" role="alert" th:text="#{certificazione.prenotazione.successo}"></div>
             </div>
             <div class="d-flex px-2 my-2">
                 <h2 th:text="#{certificazione.esami.titolo}"></h2>
@@ -53,8 +53,8 @@
             </div>
             <div class="d-flex flex-wrap align-items-center bg-white p-3 border"
                 th:unless="${#lists.isEmpty(certificazione.esami)}" th:each="esame : ${certificazione.esami}">
-                <div class="ms-3" th:text="${esame.aula}"></div>
-                <div class="ms-auto" th:text="${#temporals.format(esame.data, 'dd/MM/yyyy')}"></div>
+                <div class="ms-3" th:text="${#temporals.format(esame.data, 'dd/MM/yyyy')}"></div>
+                <div class="ms-auto" th:text="${esame.aula}"></div>
                 <div sec:authorize="hasAuthority('STUDENTE')" class="ms-2">
                     <a class="btn btn-primary" th:href="@{'/prenotazioni/esami/' + ${esame.id}}">
                         <span th:text="#{certificazione.esami.prenota}"></span>
