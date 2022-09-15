@@ -32,8 +32,7 @@ public class CertificazioneService {
         return stream(this.certificazioneRepository.findAll().spliterator(), false).collect(toList());
     }
 
-    public Certificazione getCertificazione(Long id){
+    public Certificazione getCertificazione(Long id) {
         return this.certificazioneRepository.findById(id).get();
     }
 }
-

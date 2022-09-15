@@ -16,13 +16,13 @@ import lombok.Data;
 @Data
 @Entity
 public class Certificazione {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String nome;
 
     @NotBlank
@@ -42,4 +42,3 @@ public class Certificazione {
     }
 
 }
-

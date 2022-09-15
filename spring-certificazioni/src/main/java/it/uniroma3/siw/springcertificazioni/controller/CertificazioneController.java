@@ -41,7 +41,6 @@ public class CertificazioneController {
         model.addAttribute("certificazione", certificazione);
         return "certificazione";
     }
-    
 
     @GetMapping("/admin/certificazioni")
     public String getCertificazioni(Model model) {
@@ -80,7 +79,8 @@ public class CertificazioneController {
     }
 
     @PostMapping("/admin/certificazioni/new")
-    public String saveCertificazione(@Valid @ModelAttribute Certificazione certificazione, BindingResult bindingResult, Model model) {
+    public String saveCertificazione(@Valid @ModelAttribute Certificazione certificazione, BindingResult bindingResult,
+            Model model) {
         log.info("Richiesta POST /admin/certificazioni/new");
 
         if (!bindingResult.hasErrors()) {
@@ -115,8 +115,8 @@ public class CertificazioneController {
     @GetMapping("/admin/esame/{id}/modify")
     public String modificaEsame(@PathVariable Long id, Model model) {
         log.info("Richiesta GET /admin/esame/" + id + "/modify");
-        Esame esame=this.esameService.getEsame(id);
-        Certificazione certificazione=esame.getCertificazione();
+        Esame esame = this.esameService.getEsame(id);
+        Certificazione certificazione = esame.getCertificazione();
         model.addAttribute("esame", esame);
         model.addAttribute("certificazione", certificazione);
         return "admin/esameForm";

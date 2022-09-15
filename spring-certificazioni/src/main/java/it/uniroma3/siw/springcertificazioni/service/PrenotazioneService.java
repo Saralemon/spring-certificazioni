@@ -33,5 +33,5 @@ public class PrenotazioneService {
     public Prenotazione getPrenotazione(Long id) {
         return this.prenotazioneRepository.findById(id).get();
     }
-    
+
 }

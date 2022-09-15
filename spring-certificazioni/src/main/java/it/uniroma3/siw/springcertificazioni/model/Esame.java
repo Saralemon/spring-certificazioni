@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Esame {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -43,7 +43,6 @@ public class Esame {
 
     @OneToMany(mappedBy = "esame", cascade = CascadeType.REMOVE)
     private List<Prenotazione> prenotazioni;
-
 
     public Esame(String aula, LocalDateTime data, Integer durata) {
         this.aula = aula;

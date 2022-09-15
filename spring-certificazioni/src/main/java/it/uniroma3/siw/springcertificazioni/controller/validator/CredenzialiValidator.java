@@ -8,7 +8,6 @@ import org.springframework.validation.Validator;
 import it.uniroma3.siw.springcertificazioni.model.Credenziali;
 import it.uniroma3.siw.springcertificazioni.service.CredenzialiService;
 
-
 /**
  * Validator for Credentials
  */

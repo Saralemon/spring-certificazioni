@@ -8,16 +8,15 @@ import it.uniroma3.siw.springcertificazioni.model.Utente;
 import it.uniroma3.siw.springcertificazioni.service.UtenteService;
 import lombok.RequiredArgsConstructor;
 
-
 @Component
 @RequiredArgsConstructor
 public class UtenteValidator implements Validator {
 
     final Integer MAX_NAME_LENGTH = 100;
     final Integer MIN_NAME_LENGTH = 2;
-    
+
     private final UtenteService utenteService;
-    
+
     @Override
     public void validate(Object o, Errors errors) {
         Utente user = (Utente) o;
@@ -35,8 +34,8 @@ public class UtenteValidator implements Validator {
         else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
             errors.rejectValue("cognome", "size");
 
-        if(this.utenteService.esisteStudenteNome(id, nome) && this.utenteService.esisteStudenteCognome(id, cognome)) {
-                errors.rejectValue("omonimo", "Unique");
+        if (this.utenteService.esisteStudenteNome(id, nome) && this.utenteService.esisteStudenteCognome(id, cognome)) {
+            errors.rejectValue("omonimo", "Unique");
         }
     }
 
@@ -46,4 +45,3 @@ public class UtenteValidator implements Validator {
     }
 
 }
-

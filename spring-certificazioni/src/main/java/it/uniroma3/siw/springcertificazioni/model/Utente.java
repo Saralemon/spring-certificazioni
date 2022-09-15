@@ -17,17 +17,17 @@ import lombok.Data;
 @Data
 @Entity
 public class Utente {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 20)
     private String nome;
 
     @NotBlank
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 20)
     private String cognome;
 
     @OneToMany(mappedBy = "utente", cascade = CascadeType.REMOVE)
@@ -36,5 +36,5 @@ public class Utente {
     public Utente() {
         this.prenotazioni = new LinkedList<>();
     }
-    
+
 }

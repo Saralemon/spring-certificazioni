@@ -25,7 +25,8 @@ public class EsameService {
     }
 
     public Boolean esisteEsame(Long id, String aula, LocalDateTime dataDa, Integer durata) {
-        if (dataDa == null || durata == null) return false;
+        if (dataDa == null || durata == null)
+            return false;
         LocalDateTime dataA = dataDa.plusMinutes(durata);
         return this.esameRepository.existsByIdNotAndAulaAndDataBetween(id, aula, dataDa, dataA);
     }
@@ -34,5 +35,5 @@ public class EsameService {
     public void cancellaEsame(Long id) {
         this.esameRepository.deleteById(id);
     }
-    
+
 }

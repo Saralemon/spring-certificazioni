@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import it.uniroma3.siw.springcertificazioni.model.Certificazione;
 
-
 @Repository
 public interface CertificazioneRepository extends CrudRepository<Certificazione, Long> {
 

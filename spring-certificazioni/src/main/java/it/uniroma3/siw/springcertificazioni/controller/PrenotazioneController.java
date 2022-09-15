@@ -40,6 +40,5 @@ public class PrenotazioneController {
         this.prenotazioneService.cancellaPrenotazione(id);
         return "redirect:/profilo";
     }
-    
-}
 
+}

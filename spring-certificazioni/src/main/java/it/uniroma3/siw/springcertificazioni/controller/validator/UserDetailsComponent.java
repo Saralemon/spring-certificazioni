@@ -1,6 +1,5 @@
 package it.uniroma3.siw.springcertificazioni.controller.validator;
 
-
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,5 +26,5 @@ public class UserDetailsComponent {
         Credenziali credenziali = this.credenzialiService.getCredenziali(userDetails.getUsername());
         return credenziali.getUtente();
     }
-    
+
 }

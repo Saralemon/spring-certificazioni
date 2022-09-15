@@ -10,7 +10,8 @@ import it.uniroma3.siw.springcertificazioni.model.Utente;
 
 @Repository
 public interface CredenzialiRepository extends CrudRepository<Credenziali, Long> {
-	
+
 	public Optional<Credenziali> findByUsername(String username);
+
 	public Optional<Credenziali> findByUtente(Utente utente);
 }

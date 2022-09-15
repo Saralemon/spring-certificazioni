@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 public class Prenotazione {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,7 +33,5 @@ public class Prenotazione {
         this.esame = esame;
         this.utente = utente;
     }
-    
 
 }
-

@@ -13,5 +13,3 @@ public interface EsameRepository extends CrudRepository<Esame, Long> {
     public boolean existsByIdNotAndAulaAndDataBetween(Long id, String aula, LocalDateTime dataDa, LocalDateTime dataA);
 
 }
-
-

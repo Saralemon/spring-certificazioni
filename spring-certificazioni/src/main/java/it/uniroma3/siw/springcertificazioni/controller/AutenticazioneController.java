@@ -15,25 +15,24 @@ import it.uniroma3.siw.springcertificazioni.service.CertificazioneService;
 import it.uniroma3.siw.springcertificazioni.service.CredenzialiService;
 import lombok.RequiredArgsConstructor;
 
-
 @Controller
 @RequiredArgsConstructor
 public class AutenticazioneController {
-	
-	private final CredenzialiService credenzialiService;
+
+    private final CredenzialiService credenzialiService;
     private final CertificazioneService certificazioneService;
 
     @GetMapping("/logout")
-	public String logout() {
-		return "index";
-	}
-	
+    public String logout() {
+        return "index";
+    }
+
     @GetMapping("/default")
     public String defaultAfterLogin(Model model) {
-        
-    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
-    	if (credenziali.getRuolo().equals(Ruolo.SEGRETERIA)) {
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credenziali credenziali = credenzialiService.getCredenziali(userDetails.getUsername());
+        if (credenziali.getRuolo().equals(Ruolo.SEGRETERIA)) {
             return "admin/home";
         }
         List<Certificazione> certificazioni = this.certificazioneService.getCertificazioni();
@@ -42,8 +41,8 @@ public class AutenticazioneController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "index";
     }
-	
+
 }

@@ -14,18 +14,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EsameValidator implements Validator {
 
-
     private final EsameService esameService;
 
     @Override
     public void validate(Object target, Errors errors) {
-        Esame esame = (Esame)target;
-        Long id = (esame.getId()==null) ? 0l : esame.getId();
+        Esame esame = (Esame) target;
+        Long id = (esame.getId() == null) ? 0l : esame.getId();
         Integer durata = esame.getDurata();
         String aula = esame.getAula().trim();
         LocalDateTime data = esame.getData();
 
-        if(this.esameService.esisteEsame(id, aula, data, durata)) {
+        if (this.esameService.esisteEsame(id, aula, data, durata)) {
             errors.reject("Unique.esame");
         }
     }
@@ -35,8 +34,4 @@ public class EsameValidator implements Validator {
         return Esame.class.equals(clazz);
     }
 
-    
-
-
-    
 }
